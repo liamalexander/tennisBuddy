@@ -58,11 +58,20 @@ errorMsg.textContent = "Incorrect details, try again";
 errorMsg.style.display = "none";
 loginContainer.appendChild(errorMsg);
 
+const getData = async function () {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    const data = await res.json();
+    for (let i = 0; i < data.length; i++) {
+        console.log(data[i].username, data[i].id);
+    }
+};
+
+getData();
+
 
 enterBtn.addEventListener("click", async function () {
         const res = await fetch('https://jsonplaceholder.typicode.com/users');
         const data = await res.json();
-        console.log(data);
         welcomeMsg.textContent = "";
         contactList.textContent = "";
         welcomeData.textContent = "";
