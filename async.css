@@ -1,135 +1,186 @@
-body {
-    background-image: url(/Background\ tennis.jpg);
-    background-size: auto;
+html {
+  height: 100%;
 }
 
-#root {
-    display: grid;
-    grid-template-columns: 60vw 15vw 15vw 10vw;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    "title user password submit"
-    ". . error error"
-    "welcome welcome . ."
-		"data data . ."
-    "list list . .";
+body {
+  /* background-image: url(/Background\ tennis.jpg); */
+  /* background-size: auto; */
+  /* background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%); */
+  background: linear-gradient(110deg, rgba(51, 153, 255, 0.2) 60%, rgba(51, 255, 255, 0.2) 60%);
+  min-height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;;
+  /* box-shadow: none; */
+  /* border-radius: 0%; */
+  /* change these 2 above to get a smooth line  */
 }
+
+/* #root {
+  display: grid;
+  grid-template-columns: 60vw 15vw 15vw 10vw;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "title user password submit"
+  ". . error error"
+  "welcome welcome . ."
+  "data data . ."
+  "list list . .";
+} */
+
+
 
 #title {
-    grid-area: title;
-    justify-self: center;
-    margin-top: 0;
-    font-family: serif;
-    font-size: 7vh;
-    color: #ffff66;
+  justify-self: center;
+  margin: 20px;
+  font-family: serif;
+  font-size: 7vh;
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 400px;
+  height: 400px;
+  align-items: center;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: 0 0px 5px 3px rgb(0 0 0 / 20%);
+}
+
+.login-img {
+  margin: 30px auto;
+  height: 75px;
+  width: 85px;
+  background: rgba(0, 51, 255, 0.2);
+  border-radius: 50%;
 }
 
 input {
-    height: 5vh;
-    margin: 5px 15px;
+  height: 5vh;
+  width: 50%;
+  margin: 20px auto;
+  border: 2px solid rgba(0, 51, 255, 0.4);
+  border-radius: 10px;
+  text-align: center;
 }
 
 #username {
-    grid-area: user;
+  grid-area: user;
 }
 
 #password {
-    grid-area: password;
+  grid-area: password;
 }
 
 button {
-    grid-area: submit;
-    width: 7vw;
-    height: 5vh;
-    margin-top: 1vh;
-    background-color: #0492C2;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
+  grid-area: submit;
+  width: 7vw;
+  height: 5vh;
+  margin-top: 2vh;
+  background-color: #0492C2;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 #intro {
-    grid-area: welcome;
-    color: aliceblue;
-    font-size: 4vh;
-    margin-left: 35vw;
-    margin-top: 5vh;
+  color: rgba(0, 0, 0, 1);
+  font-size: 4vh;
+  text-align: center;
 }
 
 h2 {
-    grid-area: welcome;
-    justify-self: center;
-    margin-left: 25vw;
-    font-size: 5vh;
-    color: #ffff66;
+  text-align: center;
+  font-size: 5vh;
+  color: rgba(0, 0, 0, 1);
+}
+
+.contacts-div {
+  display: flex;
+  margin: auto;
+  width: 80%;
+  justify-content: center;
 }
 
 ul {
-    grid-area: list;
-    justify-self: center;
-    margin-left: 25vw;
-    background-color: hsl(120, 100%, 75%);
-    border-radius: 20px;
+  justify-self: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 1px;
 }
 
 li {
-    list-style-type: none;
-    margin: 3vh;
+  list-style-type: none;
+  margin: 3vh;
 }
 
 p {
-    display: none;
-    grid-area: error;
-    color: #ff0000;    
-    font-size: 3vh;
-    margin-top: -4vh;
-    margin-left: -8vw;
-    font-weight: bold;
+  display: none;
+  color: #ff0000;    
+  font-size: 3vh;
+  font-weight: bold;
 }
 
 h5 {
-	grid-area: data;
-	justify-self: center;
-	margin-left: 25vw;
-	font-size: 3vh;
-	margin-top: 0;
-	margin-bottom: 0;
-	color: #ffffff;
+  text-align: center;
+  font-size: 3.5vh;
+  color: rgba(0, 0, 0, 1);
+  margin: 2vh;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  transform: scale(1.1);
 }
 
 @media only screen and (max-width: 830px) {
-	#root {
-		display: flex;
-		flex-direction: column;
-	}
-	#title {
-		text-align: center;
-	}
-	input {
-		width: 50%;
-		text-align: center;
-		align-self: center;
-	}
-	button {
-		align-self: center;
-		width: 15vw;
-		height: 6vh;
-	}
-	#intro {
-		text-align: center;
-		margin: 5vh auto;
-	}
-	h2 {
-		margin: 5vh auto;
-	}
-	ul {
-		margin: auto;
-	}
-	p {
-		margin: 5vh auto;
-		font-size: 3.5vh;
-	}
-	h5 {
-		margin: 2vh auto;
-	}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+#title {
+  text-align: center;
+}
+input {
+  width: 50%;
+  text-align: center;
+  align-self: center;
+}
+button {
+  align-self: center;
+  width: 15vw;
+  height: 6vh;
+}
+#intro {
+  text-align: center;
+  margin: 5vh auto;
+}
+h2 {
+  margin: 5vh auto;
+}
+ul {
+  margin: auto;
+}
+p {
+  margin: 5vh auto;
+  font-size: 3.5vh;
+}
+h5 {
+  margin: 2vh auto;
+}
 }

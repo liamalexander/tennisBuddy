@@ -1,78 +1,111 @@
 const root = document.getElementById("root");
 
-const init = function () {
-    const pageTitle = document.createElement("h1");
-    pageTitle.id = "title";
-    pageTitle.textContent = "Tennis Buddy";
+const logoutBtn = document.createElement("button");
+logoutBtn.classList.add("logout-btn");
+logoutBtn.textContent = "Log Out";
 
-    const userInput = document.createElement("input");
-    userInput.type = "text";
-    userInput.placeholder = "username";
-    userInput.id = "Username";
+const pageTitle = document.createElement("h1");
+pageTitle.id = "title";
+pageTitle.textContent = "Tennis Buddy";
 
-    const userPassword = document.createElement("input");
-    userPassword.type = "password";
-    userPassword.placeholder = "password";
-    userPassword.id = "password";
+const intro = document.createElement("h3");
+intro.textContent = "Log in to find players in your area";
+intro.id = "intro";
 
-    const enterBtn = document.createElement('button');
-    enterBtn.type = "submit";
-    enterBtn.formMethod = "get";
-    enterBtn.textContent = "Enter";
-    enterBtn.id = "btnEnter";
+const loginContainer = document.createElement("div");
+loginContainer.classList.add("login-container");
 
-    const intro = document.createElement("h3");
-    intro.textContent = "Log in to find players in your area";
-    intro.id = "intro";
+const loginImg = document.createElement("img");
+loginImg.src = "user-login-img.png";
+loginImg.alt = "Login Avatar";
+loginImg.classList.add("login-img");
 
-    root.appendChild(pageTitle);
-    root.appendChild(userInput);
-    root.appendChild(userPassword);
-    root.appendChild(enterBtn);
-    root.appendChild(intro);
+const userInput = document.createElement("input");
+userInput.type = "text";
+userInput.placeholder = "username";
+userInput.id = "Username";
 
-    const welcomeMsg = document.createElement("h2");
-    const contactList = document.createElement("ul");
-    const welcomeData = document.createElement("h5");
+const userPassword = document.createElement("input");
+userPassword.type = "password";
+userPassword.placeholder = "password";
+userPassword.id = "password";
 
-    const errorMsg = document.createElement("p");
-    errorMsg.textContent = "Incorrect details, try again";
-    errorMsg.style.display = "none";
-    root.appendChild(errorMsg);
+const enterBtn = document.createElement('button');
+enterBtn.type = "submit";
+enterBtn.formMethod = "get";
+enterBtn.textContent = "Enter";
+enterBtn.id = "btnEnter";
 
-    enterBtn.addEventListener("click", async function () {
-            const res = await fetch('https://jsonplaceholder.typicode.com/users');
-            const data = await res.json();
-            console.log(data);
-            welcomeMsg.textContent = "";
-            contactList.textContent = "";
-            welcomeData.textContent = "";
-            let match = false;
+loginContainer.appendChild(loginImg);
+loginContainer.appendChild(userInput);
+loginContainer.appendChild(userPassword);
+loginContainer.appendChild(enterBtn);
 
-            for (let i = 0; i < data.length; i++) {
-                if (userInput.value === data[i].username && userPassword.value === data[i].id.toString()) {
-                    const firstName = data[i].name.split(" ");
-                    welcomeMsg.textContent = `Welcome, ${firstName[0]}!`;
-                    welcomeData.textContent = "Here are the players in your area:";
-                    root.appendChild(welcomeMsg);
-                    root.appendChild(welcomeData);
-                    errorMsg.style.display = "none";
-                    intro.style.display = "none";
-                    match = true;
+root.appendChild(pageTitle);
+root.appendChild(intro);
+root.appendChild(loginContainer);
 
-                    data.forEach(function (person) {
-                        contactList.innerHTML += `<li>${person.name} :- ${person.phone}`;
-                        root.appendChild(contactList);
-                    });
-                } else if (!match) {
-                    errorMsg.style.display = "grid";
-                };
-            }
-            userInput.value = "";
-            userPassword.value = "";
-    })
-}
+const welcomeMsg = document.createElement("h2");
+const contactsContainer = document.createElement("div");
+contactsContainer.classList.add("contacts-div");
+const contactList = document.createElement("ul");
+const welcomeData = document.createElement("h5");
 
-init();
+contactsContainer.appendChild(contactList);
 
-//to see if git is working
+const errorMsg = document.createElement("p");
+errorMsg.textContent = "Incorrect details, try again";
+errorMsg.style.display = "none";
+loginContainer.appendChild(errorMsg);
+
+
+enterBtn.addEventListener("click", async function () {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users');
+        const data = await res.json();
+        console.log(data);
+        welcomeMsg.textContent = "";
+        contactList.textContent = "";
+        welcomeData.textContent = "";
+        let match = false;
+
+        for (let i = 0; i < data.length; i++) {
+            if (userInput.value === data[i].username && userPassword.value === data[i].id.toString()) {
+                const firstName = data[i].name.split(" ");
+                welcomeMsg.textContent = `Welcome, ${firstName[0]}!`;
+                welcomeData.textContent = "Here are the players in your area:";
+                root.appendChild(welcomeMsg);
+                root.appendChild(welcomeData);
+                root.appendChild(logoutBtn);
+                errorMsg.style.display = "none";
+                intro.style.display = "none";
+                loginContainer.style.display = "none";
+                welcomeMsg.style.display = "block";
+                welcomeData.style.display = "block";
+                logoutBtn.style.display = "block";
+                contactsContainer.style.display = "flex";
+                match = true;
+
+                data.forEach(function (person) {
+                    contactList.innerHTML += `<li>${person.name} :- 
+                    ${person.phone.slice(0, 9).replace("-", "7").replace("(", "3").replace(")", "2")
+                    .replace("-", "9").replace(".", "5")}`;
+                    root.appendChild(contactsContainer);
+                });
+            } else if (!match) {
+                errorMsg.style.display = "grid";
+            };
+        }
+        userInput.value = "";
+        userPassword.value = "";
+
+})
+
+
+logoutBtn.addEventListener("click", function () {
+    welcomeMsg.style.display = "none";
+    welcomeData.style.display = "none";
+    contactsContainer.style.display = "none";
+    logoutBtn.style.display = "none";
+    intro.style.display = "block";
+    loginContainer.style.display = "flex";
+});
