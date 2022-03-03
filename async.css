@@ -15,26 +15,12 @@ body {
   /* change these 2 above to get a smooth line  */
 }
 
-/* #root {
-  display: grid;
-  grid-template-columns: 60vw 15vw 15vw 10vw;
-  grid-template-rows: auto;
-  grid-template-areas: 
-  "title user password submit"
-  ". . error error"
-  "welcome welcome . ."
-  "data data . ."
-  "list list . .";
-} */
-
-
-
 #title {
   justify-self: center;
   margin: 20px;
   font-family: serif;
   font-size: 7vh;
-  color: rgba(0, 0, 0, 1);
+  color: rgba(0, 51, 255, 0.7);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -92,7 +78,8 @@ button {
 }
 
 #intro {
-  color: rgba(0, 0, 0, 1);
+  /* color: rgba(0, 0, 0, 1); */
+  color: rgb(0, 0, 128);
   font-size: 4vh;
   text-align: center;
 }
@@ -100,7 +87,8 @@ button {
 h2 {
   text-align: center;
   font-size: 5vh;
-  color: rgba(0, 0, 0, 1);
+  /* color: rgba(0, 0, 0, 1); */
+  color: rgb(0, 0, 128);
 }
 
 .contacts-div {
@@ -132,7 +120,8 @@ p {
 h5 {
   text-align: center;
   font-size: 3.5vh;
-  color: rgba(0, 0, 0, 1);
+  /* color: rgba(0, 0, 0, 1); */
+  color: rgb(0, 0, 128);
   margin: 2vh;
 }
 
@@ -171,7 +160,7 @@ button {
   margin: 5vh auto;
 }
 h2 {
-  margin: 5vh auto;
+  margin: 1vh auto;
 }
 ul {
   margin: auto;
